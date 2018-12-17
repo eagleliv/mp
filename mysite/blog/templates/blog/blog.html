@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+
+{% block title %}
+  Блог
+{% endblock title %}
+
+{% block content %}
+    <h1>Здесь будет Блог</h1>
+    {% for post in posts %}
+      <div class="card">
+        <div style="background: #6DE79A;" class="card-header">
+          <h2>{{post.title}}</h2>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{post.author}}</h5>
+          <p class="card-text">{{ post.body|truncatewords:5 }}</p>
+          <p><i>{{post.date_pub}}</i></p>
+          <a href="{{ post.id }}" class="btn btn-primary">открыть</a>
+        </div>
+      </div>
+    {% endfor %}
+{% endblock content %}

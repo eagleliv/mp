@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" type="text/css">
+    <title>
+      {% block title %}
+      {% endblock title %}
+    </title>
+  </head>
+  <body>
+      <form align="right">
+      <div class="btn-group-vertical" role="group" align="center">
+        <a href="/" class="btn btn-dark" style="margin: 5px; width: 100px;">Главная</a>
+        <a href="/main_f/" class="btn btn-dark" style="margin:5px; width: 100px;">Вход</a>
+        <a href="/blog/" class="btn btn-dark" style="margin:5px; width: 100px;">Блог</a>
+        <a href="/partners/" class="btn btn-dark" style="margin:5px; width: 100px;">Партнеры</a>
+        <a href="/via/" class="btn btn-dark" style="margin:5px; width: 100px;">Контакты</a>
+      </div>
+    </form>
+    {% block content %}
+    {% endblock content %}
+  </body>
+</html>
