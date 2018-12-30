@@ -1,22 +1,27 @@
 {% extends "main.html" %}
 
 {% block title %}
-  Блог
+<title>Блог</title>
 {% endblock title %}
 
 {% block content %}
-    <h1>Здесь будет Блог</h1>
-    {% for post in posts %}
-      <div class="card">
-        <div style="background: #6DE79A;" class="card-header">
-          <h2>{{post.title}}</h2>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{post.author}}</h5>
-          <p class="card-text">{{ post.body|truncatewords:5 }}</p>
-          <p><i>{{post.date_pub}}</i></p>
-          <a href="{{ post.id }}" class="btn btn-primary">открыть</a>
-        </div>
+<div class="partnerscont container11">
+  {% for post in posts %}
+  <div class="card blogcard">
+    <div class="front">
+      <div class="card-header" style="background: #70EA6A">
+        <h2>{{post.title}}</h2>
       </div>
-    {% endfor %}
+      <div class="card-body">
+        <h5 class="card-title">{{post.author}}</h5>
+        <p class="card-text">{{ post.body|truncatewords:5 }}</p>
+        <p><i>{{post.date_pub}}</i></p>
+        <a href="{% url 'blog_details' pk=post.id %}" class="btn btn-primary">открыть</a>
+      </div>
+    </div>
+    <div class="back">
+    </div>
+  </div>
+  {% endfor %}
+</div>
 {% endblock content %}

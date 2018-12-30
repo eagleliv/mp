@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% load staticfiles %}
-    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" type="text/css">
-    <title>
-      {% block title %}
-      {% endblock title %}
-    </title>
-  </head>
-  <body>
-      <form align="right">
-      <div class="btn-group-vertical" role="group" align="center">
-        <a href="/" class="btn btn-dark" style="margin: 5px; width: 100px;">Главная</a>
-        <a href="/main_f/" class="btn btn-dark" style="margin:5px; width: 100px;">Вход</a>
-        <a href="/blog/" class="btn btn-dark" style="margin:5px; width: 100px;">Блог</a>
-        <a href="/partners/" class="btn btn-dark" style="margin:5px; width: 100px;">Партнеры</a>
-        <a href="/via/" class="btn btn-dark" style="margin:5px; width: 100px;">Контакты</a>
-      </div>
-    </form>
-    {% block content %}
-    {% endblock content %}
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'style1.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" type="text/css">
+  {% block title %}
+  {% endblock title %}
+</head>
+<body class="body11">
+  <div class="orangeline"></div>
+  <div class="greenline">
+    <!--img style="width: 250px; height: 200px;" src="{% static "gif/99px.gif" %}"-->
+    <div class="group-abtn" role="group">
+      <a href="{% url 'm_scr' %}" class="btn btn-dark abtn">Главная</a>
+      <a href="{% url 'main_f' %}" class="btn btn-dark abtn">Вход</a>
+      <a href="{% url 'blog' %}" class="btn btn-dark abtn">Блог</a>
+      <a href="{% url 'partners' %}" class="btn btn-dark abtn">Партнеры</a>
+      <a href="{% url 'via' %}" class="btn btn-dark abtn">Контакты</a>
+    </div>
+  </div>
+  {% block content %}
+  {% endblock content %}
+</div>
+</body>
 </html>

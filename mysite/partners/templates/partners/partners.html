@@ -1,14 +1,14 @@
 {% extends "main.html" %}
+{% load staticfiles %}
 
 {% block title %}
-  Партнеры
+<title>Партнеры</title>
 {% endblock title %}
 
 {% block content %}
-    <h1>Здесь будет страница Партнеров</h1>
-    <div>
-      {% load staticfiles %}
-      <img src={% static "img/kartinki.jpg" %} alt="Acer">
-
-    </div>
+<div class="partnerscont">
+  {% for key, value in r.items %}
+    <div class="partimg"><a href="http://{{value}}" target="_blank"><img class="findimg" src="{% static key %}" alt="{{value}}"></a></div>
+  {% endfor %}
+</div>
 {% endblock content %}

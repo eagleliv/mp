@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container11 {
+  perspective: 1200px;
+}
+
+.blogcard {
+  margin: 10px 10px 10px 20px;
+  width: 500px;
+  float: left;
+  position: relative;
+  transform-style: preserve-3d;
+  animation-timing-function: ease-in-out;
+  transition: 3s;
+}
+
+.blogcard:hover {
+  transform: rotateY(360deg);
+}
+
+.front {
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+  background: orange;
+}
+
+.back {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transform: rotateY(180deg);
+  background: #8DF7B9;
+}
+
+.group-abtn {
+  display: flex;
+  height: 300px;
+  width: 120px;
+  border: 2px solid black;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.abtn {
+  width: 110px;
+}
+
+.body11 {
+  animation-name: opacitychange;
+  animation-fill-mode: forwards;
+  animation-duration: 5s;
+  background-repeat: no-repeat;
+  background-color: #636363;
+  background-position: center center, center center;
+}
+
+.partnerscont {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100% - 130px);
+  margin-top: 20px;
+  min-height: 360px;
+  justify-content: space-around;
+  align-content: space-around;
+}
+
+.partimg {
+  display: flex;
+  width: auto;
+  height: 100%;
+  border: 1px solid black;
+  transition: 2s;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.orangeline {
+  background-color: orange;
+  height: 80px;
+  width: 100%;
+
+}
+
+.greenline {
+  position: fixed;
+  background-color: green;
+  height: 100%;
+  width: 125px;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.jumbcor {
+  width: calc(100% - 130px);
+  margin-top: 20px;
+}
+
+.findsyspic {
+  left: 60px;
+  width: 33,4%;
+  transition: 2s;
+  overflow: hidden;
+  height: 860px;
+  display: flex;
+  animation-name: picmove;
+  animation-duration: 1s;
+  animation-fill-mode: backwards;
+}
+
+.findimg {
+  width: 100%;
+  height: 100%;
+}
+
+.findpiccont {
+  display: flex;
+  width: calc(100% - 130px);
+  height: auto;
+}
+
+.findimg:hover {
+  transform: scale(1.1, 1.1);
+  transition: 2s;
+}
+
+@keyframes picmove {
+  0% {transform: translateX(-60px);}
+  100% {transform: none;}
+}
+
+@keyframes opacitychange {
+  from {opacity: 0; background-image: url("gif/igor.png");}
+  to {opacity: 1; background-image: rgba(0,0,0,0);}
+}
