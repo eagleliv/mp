@@ -5,8 +5,8 @@ from .models import Post
 
 def blog(request):
     posts = Post.objects.all()
-    return render(request, 'blog/blog.html', {'posts': posts})
+    return render(request, 'blog/blog.html', context = {'posts': posts})
 
 def blog_details(request, pk):
         details = get_object_or_404(Post, pk=pk)
-        return render(request, 'blog/blog_details.html', {'details': details})
+        return render(request, 'blog/blog_details.html', context = {'details': details})

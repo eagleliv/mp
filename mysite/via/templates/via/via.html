@@ -8,16 +8,16 @@
 <div class="jumbotron jumbcor">
   <h1 class="display-4">Наши контакты</h1>
   {% for key, value in adr.items %}
-  <p class="lead"><strong>{{key}}</strong>{{value}}</p>
+  <p class="lead"><strong><i>{{key}}</i></<strong>{{value}}</p>
   {% endfor %}
   <hr class="my-4">
   <h3>Мы в соцсетях</h3>
-  <a title="WhatsApp" href="whatsapp://send?phone=+120345678910"><img src="{% static 'gif/social/001-whatsapp.png' %}" alt="WhatsApp"></a>
-  <a title="Viber" href="viber://chat?number=+120345678910"><img src="{% static 'gif/social/005-viber.png' %}" alt="Viber"></a>
-  <a title="Telegram" href="tg://resolve?domain=nikname"><img src="{% static 'gif/social/006-telegram.png' %}" alt="Telegram"></a>
-  <a title="Skype" href="skype:nikname?chat"><img src="{% static 'gif/social/004-skype.png' %}" alt="Skype"></a>
-  <a title="Twitter" href="#"><img src="{% static 'gif/social/002-twitter.png' %}" alt="Twitter"></a>
-  <a title="Facebook" href="#"><img src="{% static 'gif/social/003-facebook.png' %}" alt="Facebook"></a>
-  <a title="Instagram" href="#"><img src="{% static 'gif/social/007-instagram.png' %}" alt="Instagram"></a>
+  <a title="WhatsApp" href="whatsapp://send?phone=+120345678910"><img class="imgsocial" src="{% static 'gif/social/001-whatsapp.png' %}" alt="WhatsApp"></a>
+  <a title="Viber" href="viber://chat?number=+120345678910"><img class="imgsocial" src="{% static 'gif/social/005-viber.png' %}" alt="Viber"></a>
+  <a title="Telegram" href="tg://resolve?domain=nikname"><img class="imgsocial" src="{% static 'gif/social/006-telegram.png' %}" alt="Telegram"></a>
+  <a title="Skype" href="skype:nikname?chat"><img class="imgsocial" src="{% static 'gif/social/004-skype.png' %}" alt="Skype"></a>
+  <a title="Twitter" href="#"><img class="imgsocial" src="{% static 'gif/social/002-twitter.png' %}" alt="Twitter"></a>
+  <a title="Facebook" href="#"><img class="imgsocial" src="{% static 'gif/social/003-facebook.png' %}" alt="Facebook"></a>
+  <a title="Instagram" href="#"><img class="imgsocial" src="{% static 'gif/social/007-instagram.png' %}" alt="Instagram"></a>
 </div>
 {% endblock content %}
