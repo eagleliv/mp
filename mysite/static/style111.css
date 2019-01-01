@@ -17,11 +17,11 @@
   transition: 3s;
 }
 
-.blogcard:hover {
+/* .blogcard:hover {
   transform: rotateY(360deg);
-}
+} */
 
-.front {
+/* .front {
   height: 100%;
   width: 100%;
   backface-visibility: hidden;
@@ -34,7 +34,7 @@
   position: absolute;
   transform: rotateY(180deg);
   background: #8DF7B9;
-}
+} */
 
 .group-abtn {
   display: flex;
