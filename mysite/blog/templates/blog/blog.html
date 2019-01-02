@@ -5,6 +5,9 @@
 {% endblock title %}
 
 {% block content %}
+<div class="createpostbtn">
+  <a href="{% url 'post_create' %}" class="btn btn-dark">Создать пост</a>
+</div>
 <div class="partnerscont container11">
   {% for post in posts %}
   <div class="card blogcard">
