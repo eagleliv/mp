@@ -1,13 +1,13 @@
 {% extends "main.html" %}
 
 {% block title %}
-  <title>Вход</title>
+<title>Вход</title>
 {% endblock title %}
 
 {% block content %}
-<form action="/your_name/" method="post">
-  {% csrf_token %}
-  {{ form }}
-  <input type="submit" value="Submit">
-</form>
+  <div class="">
+    <a href="{% url 'pass_create' %}" class="btn btn-dark">Регистрация</a>
+    <a href="{% url 'pass_enter' %}" class="btn btn-dark">Вход</a>
+
+  </div>
 {% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<form action="{% url 'pass_create' %}" method="post">
+  {% csrf_token %}
+    {% for field in form %}
+      <h1>{{ field.label_tag }}</h1>
+      <h2>{{ field }}</h2>
+        {% if field.help_text %}
+          <i>{{ field.help_text }}</i>
+        {% endif %}
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Delete Post</button>
+</form>
+{% endblock content %}

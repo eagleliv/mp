@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<form action="{% url 'pass_enter' %}" method="post">
+  {% csrf_token %}
+    {{ form.as_p }}
+
+
+    <button type="submit" class="btn btn-primary">Delete Post</button>
+</form>
+{% endblock content %}

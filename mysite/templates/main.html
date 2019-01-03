@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+  {% load staticfiles %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
   <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" type="text/css">
-  {% load staticfiles %}
   {% block title %}
   {% endblock title %}
 </head>
@@ -19,7 +19,7 @@
   <!--img style="width: 250px; height: 200px;" src="{% static "gif/99px.gif" %}"-->
   <div class="group-abtn" role="group">
     <a href="{% url 'm_scr' %}" class="btn btn-dark abtn">Главная</a>
-    <a href="{% url 'get_name' %}" class="btn btn-dark abtn">Вход</a>
+    <a href="{% url 'main_f' %}" class="btn btn-dark abtn">Вход</a>
     <a href="{% url 'blog' %}" class="btn btn-dark abtn">Блог</a>
     <a href="{% url 'partners' %}" class="btn btn-dark abtn">Партнеры</a>
     <a href="{% url 'via' %}" class="btn btn-dark abtn">Контакты</a>
