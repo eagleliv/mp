@@ -34,7 +34,7 @@ class PassCreate(View):
             form.save()
             return redirect('/')
         else:
-            form = UserCreationForm()
+            form = PassForm()
         return render(request, 'main_f/register.html', context={'form': form})
 
 class PassEnter(View):

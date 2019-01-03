@@ -3,13 +3,15 @@
 {% block content %}
 <form action="{% url 'pass_create' %}" method="post">
   {% csrf_token %}
+    <div class="form-group">
     {% for field in form %}
-      <h1>{{ field.label_tag }}</h1>
-      <h2>{{ field }}</h2>
+      {{ field.label_tag }}
+      {{ field }} <br />
         {% if field.help_text %}
-          <i>{{ field.help_text }}</i>
+          <small id="help" class="form-text text-muted">{{ field.help_text }}</small>
         {% endif %}
     {% endfor %}
     <button type="submit" class="btn btn-primary">Delete Post</button>
+    </div>
 </form>
 {% endblock content %}

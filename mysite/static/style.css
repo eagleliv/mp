@@ -174,3 +174,7 @@
   right: 3px;
   position: fixed;
 }
+
+.userinp {
+  background-color: red;
+}
