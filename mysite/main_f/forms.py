@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 
@@ -18,11 +19,11 @@ from django.contrib.auth.models import User
 #         }
 
 
-class PassForm(UserCreationForm):
+class PassForm(UserCreationForm, forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password1', 'password2']
-        widgets = {
-            'username': forms.TextInput(attrs={'class': 'userinp', 'placeholder': 'username'}),
-            'password1': forms.PasswordInput(attrs={'class': 'userinp'}),
-        }
+        # widgets = {
+        #     'username': forms.TextInput(attrs={'class': 'userinp', 'placeholder': 'username'}),
+        #     'password1': forms.PasswordInput(attrs={'class': 'userinp'}),
+        # }
