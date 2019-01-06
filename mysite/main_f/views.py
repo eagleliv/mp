@@ -53,6 +53,10 @@ class PassCreate(FormView):
         form = PassForm(request.POST) #UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            user_n = form.cleaned_data.get('username')
+            user_p = form.cleaned_data.get('password1')
+            user = authenticate(username = user_n, password = user_p)
+            login(request, user)
             return redirect('/')
         return render(request, 'main_f/register.html', context={'form': form})
 

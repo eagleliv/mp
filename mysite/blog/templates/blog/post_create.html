@@ -10,7 +10,7 @@
           {{ field.errors }}
         </div>
       {% endif %}
-    {{ field.label }}
+    {{ field.label }} = {{ request.user.username }}  
     {{ field }}
   </div>
   {% endfor %}

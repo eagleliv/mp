@@ -16,6 +16,9 @@ def blog_details(request, pk):
 class PostCreate(View):
     def get(self, request):
         form = PostForm()
+        print(form)
+        form.author = request.user.username()
+
         return render(request, 'blog/post_create.html', context={'form': form})
     def post(self, request):
         bound_form = PostForm(request.POST)

@@ -3,6 +3,7 @@
 {% block content %}
 <form action="{% url 'pass_create' %}" method="post">
   {% csrf_token %}
+  <div class="userinp1">
     <div class="form-group">
     {% for field in form %}
       {{ field.label }}
@@ -17,6 +18,7 @@
     {% endfor %}
 
     <button type="submit" class="btn btn-primary">Регистрация</button>
+  </div>
   </div>
 </form>
 {% endblock content %}

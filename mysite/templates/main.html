@@ -14,7 +14,15 @@
   <!-- <div class="bglogo">
   <img src="{% static "gif/igor.png" %}" alt="logo">
 </div> -->
-<div class="orangeline"></div>
+<div class="orangeline">
+  {{request.user.username}}
+  <div class="">
+    <a href="{% url 'pass_create' %}" class="btn btn-dark">Регистрация</a>
+    <a href="{% url 'pass_enter' %}" class="btn btn-dark">Вход</a>
+    <a href="{% url 'pass_logout' %}" class="btn btn-dark">Выход</a>
+  </div>
+
+</div>
 <div class="greenline">
   <!--img style="width: 250px; height: 200px;" src="{% static "gif/99px.gif" %}"-->
   <div class="group-abtn" role="group">
