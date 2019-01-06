@@ -5,16 +5,18 @@
   {% csrf_token %}
     <div class="form-group">
     {% for field in form %}
-      {{ field.label_tag }} <br />
-      {{ field }} <br />
+      {{ field.label }}
+      {{ field }}
         {% if field.help_text %}
           <small id="help" class="form-text text-muted">{{ field.help_text }}</small>
         {% endif %}
-        {% for error in field.errors %}
-          <h1>{{ error }}</h1>
-        {% endfor %}
+
+    {% for error in field.errors %}
+      <div class="alert alert-danger">{{ error }}</div>
     {% endfor %}
-    <button type="submit" class="btn btn-primary">Delete Post</button>
-    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Регистрация</button>
+  </div>
 </form>
 {% endblock content %}

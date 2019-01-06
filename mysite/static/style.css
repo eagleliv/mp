@@ -175,6 +175,11 @@
   position: fixed;
 }
 
-.userinp {
-  background-color: red;
+.userinp1 {
+  display: flex;
+  width: calc(100% - 900px);
+  background-color: white;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
