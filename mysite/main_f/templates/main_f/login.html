@@ -1,21 +1,24 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<form action="{% url 'pass_enter' %}" method="post">
-  {% csrf_token %}
-  <div class="userinp1">
-  {% for field in form %}
-    {{ field }}
-      {% if field.help_text %}
-        <small id="help" class="form-text text-muted">{{ field.help_text }}</small>
+
+    <form action="{% url 'pass_enter' %}" method="post">
+      {% csrf_token %}
+      <div class="userinp1">
+      {% for field in form %}
+        {{ field }}
+          {% if field.help_text %}
+            <small id="help" class="form-text text-muted">{{ field.help_text }}</small>
+          {% endif %}
+      </div>
+      {% endfor %}
+      {% if form.errors %}
+        {% for key, value in form.errors.items %}
+          <div class="alert alert-danger">{{ value }}</div>
+        {% endfor %}
       {% endif %}
-  </div>
-  {% endfor %}
-  {% if form.errors %}
-    {% for key, value in form.errors.items %}
-      <div class="alert alert-danger">{{ value }}</div>
-    {% endfor %}
-  {% endif %}
-    <button type="submit" class="btn btn-primary">Delete Post</button>
-</form>
+        <button type="submit" class="btn btn-primary">Delete Post</button>
+    </form>
+
+
 {% endblock content %}
