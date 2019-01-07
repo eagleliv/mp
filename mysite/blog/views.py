@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post
+from .models import Post, Comment
 from django.views.generic import View
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 #from django.http import HttpResponse
 
 
@@ -9,9 +9,37 @@ def blog(request):
     posts = Post.objects.all()
     return render(request, 'blog/blog.html', context = {'posts': posts})
 
-def blog_details(request, pk):
-        details = get_object_or_404(Post, pk=pk)
-        return render(request, 'blog/blog_details.html', context = {'details': details})
+# def blog_details(request, pk):
+#         details = get_object_or_404(Post, pk=pk)
+#         comments = details.comments.filter(active = True)
+#
+#         if request.method == 'POST':
+#             comment_form = CommentForm(request.POST)
+#             if comment_form.is_valid():
+#                 new_comment = comment_form.save(commit = False)
+#                 new_comment.post = details
+#                 new_comment.save()
+#         else:
+#             comment_form = CommentForm()
+#
+#         return render(request, 'blog/blog_details.html', context = {'details': details, 'comments': comments, 'comment_form': comment_form})
+
+class BlogDetails(View):
+    def get(self, request, pk):
+        details = Post.objects.get(pk=pk)
+        comments = details.comments.filter(active = True)
+        return render(request, 'blog/blog_details.html', context = {'comments': comments, 'details': details})
+    def post(self, request, pk):
+        comment_form = CommentForm(request.POST)
+        details = Post.objects.get(pk=pk)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit = False)
+            new_comment.post = details
+            new_comment.name = request.user.username
+            new_comment.save()
+            return redirect('blog_details', pk=pk)
+        return render(request, 'blog/blog_details.html', context = {'comment_form': comment_form})
+
 
 class PostCreate(View):
     def get(self, request):
