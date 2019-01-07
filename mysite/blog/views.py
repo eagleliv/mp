@@ -47,3 +47,7 @@ class PostDelete(View):
         post = Post.objects.get(pk=pk)
         post.delete()
         return redirect ('blog')
+
+def my_posts(request):
+    posts = Post.objects.filter(author = request.user.username)
+    return render(request, 'blog/blog.html', context = {'posts': posts})

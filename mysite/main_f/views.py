@@ -1,32 +1,3 @@
-# from django.shortcuts import render
-# from .models import PassBase
-# from django.views.generic import View
-# from .forms import PassForm
-#
-#
-# class PassCreate(View):
-#     def get(self, request):
-#         pass_data = PassForm()
-#         return render(request, 'main_f/main_f.html', context = {'pass_data': pass_data})
-#     def post(self, request):
-#         bound_form = PassForm(request.POST)
-#         if bound_form.is_valid():
-#             if name_u in PassBase.objects.all():
-#                 return render(request, 'main_f/main_f.html', context = {'name': name_u})
-
-from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, get_user, logout
-from django.views.generic.edit import FormView
-from .forms import PassForm
-from django.core.exceptions import ValidationError
-from django.contrib.auth import authenticate
-
-
-def main_f(request):
-    return render (request, 'main_f/main_f.html')
-
 #
 # class PassCreate(FormView):
 #     form_class = UserCreationForm
@@ -44,6 +15,20 @@ def main_f(request):
 #         self.user = form.get_user()
 #         login(self.request, self.user)
 #         return super(PassEnter, self).form_valid(form)
+
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, get_user, logout
+from django.views.generic.edit import FormView
+from .forms import PassForm
+from django.core.exceptions import ValidationError
+from django.contrib.auth import authenticate
+
+
+def main_f(request):
+    return render (request, 'main_f/main_f.html')
+
 
 class PassCreate(FormView):
     def get(self, request):

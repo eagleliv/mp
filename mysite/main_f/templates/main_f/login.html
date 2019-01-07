@@ -10,14 +10,15 @@
           {% if field.help_text %}
             <small id="help" class="form-text text-muted">{{ field.help_text }}</small>
           {% endif %}
-      </div>
+
       {% endfor %}
       {% if form.errors %}
         {% for key, value in form.errors.items %}
           <div class="alert alert-danger">{{ value }}</div>
         {% endfor %}
       {% endif %}
-        <button type="submit" class="btn btn-primary">Delete Post</button>
+        <button type="submit" class="btn btn-primary">войти</button>
+        </div>
     </form>
 
 

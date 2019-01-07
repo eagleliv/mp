@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'main_screen',
     'partners',
     'via',
-
 ]
 
 MIDDLEWARE = [

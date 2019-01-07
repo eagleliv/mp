@@ -38,7 +38,7 @@
 
 .group-abtn {
   display: flex;
-  height: 300px;
+  height: auto;
   width: 120px;
   border: 2px solid black;
   flex-direction: column;
@@ -49,6 +49,8 @@
 
 .abtn {
   width: 110px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .body11 {
@@ -177,9 +179,13 @@
 
 .userinp1 {
   display: flex;
-  width: calc(100% - 900px);
-  background-color: white;
+  margin-left: 10%;
+  background-color: black;
+  width: 500px;
   margin-top: 20px;
   flex-wrap: wrap;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }

@@ -14,10 +14,14 @@ class PassForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super(PassForm, self).__init__(*args, **kwargs)
-            
+
         self.fields['username'].widget.attrs['class'] = 'form-control'
         self.fields['password1'].widget.attrs['class'] = 'form-control'
         self.fields['password2'].widget.attrs['class'] = 'form-control'
+
+        self.fields['username'].widget.attrs['placeholder'] = 'Имя пользователя'
+        self.fields['password1'].widget.attrs['placeholder'] = 'Пароль'
+        self.fields['password2'].widget.attrs['placeholder'] = 'Повторите пароль'
 
 
         # widgets = {
