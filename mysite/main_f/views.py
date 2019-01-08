@@ -21,7 +21,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, get_user, logout
 from django.views.generic.edit import FormView
-from .forms import PassForm
+from .forms import PassForm, PassValForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
 
@@ -52,10 +52,10 @@ class PassEnter(FormView):
         if get_user(request).is_authenticated:
             return redirect('/')
         else:
-            form = AuthenticationForm()
+            form = PassValForm() #AuthenticationForm()
             return render(request, 'main_f/login.html', context={'form': form})
     def post(self, request):
-        form = AuthenticationForm(None, request.POST)
+        form = PassValForm(None, request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)

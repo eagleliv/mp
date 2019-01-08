@@ -25,14 +25,19 @@
           <cite title="Source Title">{{ comment.created }}</cite>
         </div>
       </div>
+      <hr>
       {% endfor %}
 
-      <h2>Add a new comment</h2>
+      {% if user.is_authenticated %}
+      <br>
+      <div class="new-post">
       <form action="." method="post">
-        {{ comment_form.as_p }}
+        {{ comment_form.body }}
         {% csrf_token %}
-        <p><input type="submit" value="Add comment" class="btn btn-primary"></p>
+        <p><input type="submit" value="Добавить комментарий" class="btn btn-primary"></p>
       </form>
+      {% endif %}
+      </div>
     </blockquote>
 
   </div>
