@@ -1,18 +1,22 @@
 {% extends 'main.html' %}
 
-{% block content %}
+{% block title %}
+  <title>Вход</title>
+{% endblock title %}
 
+
+{% block content %}
     <form action="{% url 'pass_enter' %}" method="post">
       {% csrf_token %}
       <div class="userinp1">
       {% for field in form %}
-        {{ field.label }}
-        {{ field }}
+        {{ field }} <br>
           {% if field.help_text %}
             <small id="help" class="form-text text-muted">{{ field.help_text }}</small>
           {% endif %}
 
       {% endfor %}
+
       {% if form.errors %}
         {% for key, value in form.errors.items %}
           <div class="alert alert-danger">{{ value }}</div>
@@ -22,6 +26,5 @@
         <button type="submit" class="btn btn-primary">войти</button>
         </div>
     </form>
-
 
 {% endblock content %}

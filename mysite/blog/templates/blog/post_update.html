@@ -1,5 +1,9 @@
 {% extends "main.html" %}
 
+{% block title %}
+  <title>Редактировать пост</title>
+{% endblock title %}
+
 {% block content %}
 <form action="{% url 'post_update' pk=post.pk %}" method="post">
   {% csrf_token %}
