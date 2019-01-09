@@ -16,7 +16,7 @@
 </div> -->
 <div class="orangeline">
   {% if user.is_authenticated %}
-  <div class="alert alert-warning" style="width: 300px;">Вы вошли как {{ request.user.username }}</div>
+  <div class="alert alert-warning" style="width: 300px; margin-right: 150px;">Вы вошли как {{ request.user.username }}</div>
 
   {% endif %}
 
@@ -31,6 +31,7 @@
     {% if user.is_authenticated %}
     <a href="{% url 'post_create' %}" class="btn btn-dark abtn">Создать пост</a>
     <a href="{% url 'my_posts' %}" class="btn btn-dark abtn">Мои посты</a>
+    <a href="{% url 'chat_form' %}" class="btn btn-dark abtn">Чат</a>
     <a href="{% url 'pass_logout' %}" class="btn btn-dark abtn">Выход</a>
     {% else %}
     <a href="{% url 'pass_create' %}" class="btn btn-dark abtn">Регистрация</a>

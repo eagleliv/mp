@@ -82,8 +82,8 @@
 
 .orangeline {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: flex-end;
   background-color: orange;
   height: 80px;
   width: 100%;
@@ -181,7 +181,7 @@
 
 .userinp1 {
   display: flex;
-  margin-left: 10%;
+  margin-left: 35%;
   background-color: black;
   width: 500px;
   margin-top: 20px;

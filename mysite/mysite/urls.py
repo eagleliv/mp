@@ -23,4 +23,5 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('via/', include('via.urls')),
     path('partners/', include('partners.urls')),
+    path('chatbox/', include('chatbox.urls')),
 ]
