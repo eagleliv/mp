@@ -1,11 +1,18 @@
 {% extends 'main.html' %}
 
 {% block content %}
-  <div>
-    <div>
-      {{user.username}}
-    </div>
-    <input type="text">
+
+<form action="{% url 'chat_form' %}" method = 'post'>
+  {% csrf_token %}
+  <div style='display: flex; flex-direction: column; border: 2px solid black;'>
+    {{user.username}}
+    {% for item in chat %}
+    {{item}}
+    {% for item1 in chat1 %}
+    {{item1}}<br>
+    {% endfor %}
+    {% endfor %}
     <button type="submit">Send</button>
   </div>
+</form>
 {% endblock content %}
