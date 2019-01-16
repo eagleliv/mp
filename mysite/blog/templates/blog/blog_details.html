@@ -14,32 +14,54 @@
       <p>{{ details.body }}</p>
       <footer class="blockquote-footer">{{ details.author}} on <cite title="Source Title">{{ details.date_pub }}</cite></footer>
       <hr>
-      <p>У этой статьи {{ comments.count }} комментариев</p>
+      <h4>Комментарии</h4>
       <hr>
-
-      {% for comment in comments %}
-      <div class="card w-50">
-        <div class="card-body">
-          <h5 class="card-title">{{ comment.name }}</h5>
-          <p class="card-text">{{ comment.body }}</p>
-          <cite title="Source Title">{{ comment.created }}</cite>
+      {% for comment in comments.object_list %}
+        <div class="card w-50">
+          <div class="card-body">
+            <h5 class="card-title">{{ comment.name }}</h5>
+            <p class="card-text">{{ comment.body }}</p>
+            <cite title="Source Title">{{ comment.created }}</cite>
+          </div>
         </div>
-      </div>
-      <hr>
+        <hr>
       {% endfor %}
 
-      {% if user.is_authenticated %}
-      <br>
-      <div class="new-post">
-      <form action="." method="post">
-        {{ comment_form.body }}
-        {% csrf_token %}
-        <p><input type="submit" value="Добавить комментарий" class="btn btn-primary"></p>
-      </form>
+      {% if comments %}
+      <nav aria-label="...">
+        <ul class="pagination">
+          <li class="page-item {% if not prev_url %}disabled{% endif %}">
+            <a class="page-link" href="{{ prev_url }}" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          {% for n in comments.paginator.page_range %}
+            {% if comments.number == n %}
+              <li class="page-item active" aria-current="page">
+                <a class="page-link" href="?page={{ n }}"> {{ n }} <span class="sr-only">(current)</span></a>
+              </li>
+            {% elif n > comments.number|add:-2 or n < comments.number|add:2 %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ n }}">{{ n }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          <li class="page-item {% if not next_url %}disabled{% endif %}">
+            <a class="page-link" href="{{ next_url }}">Next</a>
+          </li>
+        </ul>
+      </nav>
       {% endif %}
+
+      {% if user.is_authenticated %}
+        <br>
+        <div class="new-post">
+          <form action="." method="post">
+            {{ comment_form.body }}
+            {% csrf_token %}
+            <p><input type="submit" value="Добавить комментарий" class="btn btn-primary"></p>
+          </form>
+        {% endif %}
       </div>
     </blockquote>
-
   </div>
 </div>
 {% endblock content %}
