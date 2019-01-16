@@ -42,9 +42,6 @@ class BlogDetails(View):
             return render(request, 'blog/blog_details.html', context = context)
 
     def post(self, request, pk):
-        # details = Post.objects.get(pk=pk)
-        # comments = details.comments.filter(active = True)
-
         context = self.get(request, pk)
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
