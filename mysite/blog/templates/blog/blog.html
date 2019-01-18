@@ -7,7 +7,7 @@
 {% block content %}
 
 <div class="partnerscont container11">
-  {% for post in posts %}
+  {% for post in comments %}
   <div class="card blogcard">
     <div class="front">
       <div class="card-header" style="background: #70EA6A">
@@ -27,8 +27,15 @@
       </div>
     </div>
   </div>
+
+
   {% empty %}
   <h1>У вас нет статей</h1>
   {% endfor %}
 </div>
+
+<div style="width: calc(100% - 130px); display: flex; justify-content: center;">
+    {% include 'blog/pagi.html' %}
+</div>
+
 {% endblock content %}
