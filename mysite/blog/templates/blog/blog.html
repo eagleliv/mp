@@ -10,19 +10,19 @@
   {% for post in comments %}
   <div class="card blogcard">
     <div class="front">
-      <div class="card-header" style="background: #70EA6A">
+      <div class="card-header" style="background: #636363">
         <h2>{{post.title}}</h2>
       </div>
-      <div class="card-body">
+      <div class="card-body" style="background: #D9DCE1">
         <h5 class="card-title">{{post.author}}</h5>
         <p class="card-text">{{ post.body|truncatewords:5 }}</p>
         <p><i>{{post.date_pub}}</i></p>
         {% if user.is_authenticated and post.author == user.username %}
-        <a href="{% url 'blog_details' pk=post.id %}" class="btn btn-primary">открыть</a>
-        <a href="{% url 'post_update' pk=post.id %}" class="btn btn-primary">редактировать</a>
-        <a href="{% url 'post_delete' pk=post.id %}" class="btn btn-primary">удалить</a>
+        <a href="{% url 'blog_details' pk=post.id %}" class="btn btn-dark">открыть</a>
+        <a href="{% url 'post_update' pk=post.id %}" class="btn btn-dark">редактировать</a>
+        <a href="{% url 'post_delete' pk=post.id %}" class="btn btn-dark">удалить</a>
         {% else %}
-        <a href="{% url 'blog_details' pk=post.id %}" class="btn btn-primary">открыть</a>
+        <a href="{% url 'blog_details' pk=post.id %}" class="btn btn-dark">открыть</a>
         {% endif %}
       </div>
     </div>
