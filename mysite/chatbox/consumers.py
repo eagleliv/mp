@@ -1,49 +1,45 @@
-from asgiref.sync import async_to_sync
-from channels.generic.websocket import WebsocketConsumer
+import asyncio
+from channels.consumer import AsyncConsumer
 import json
 
-class ChatConsumer(WebsocketConsumer):
-    def connect(self):
+class ChatConsumer(AsyncConsumer):
+    async def websocket_connect(self, event):
+        print('connection successfull', event)
+        await self.send ({
+            'type': 'websocket.accept',
+        })
         self.room_name = self.scope['url_route']['kwargs']['room_name']
-        self.room_group_name = 'chat_%s' % self.room_name
-        self.user_name = self.scope['user']
-
-        print(self.user_name)
-
-        # Join room group
-        async_to_sync(self.channel_layer.group_add)(
-            self.room_group_name,
+        print()
+        print(self.room_name)
+        print()
+        # self.chat_room_name = 'chat_' + room_name
+        await self.channel_layer.group_add(
+            self.room_name,
             self.channel_name
         )
 
-        self.accept()
-
-    def disconnect(self, close_code):
-        # Leave room group
-        async_to_sync(self.channel_layer.group_discard)(
-            self.room_group_name,
-            self.channel_name
-        )
-
-    # Receive message from WebSocket
-    def receive(self, text_data):
-        text_data_json = json.loads(text_data)
-        message = text_data_json['message']
-
-        # Send message to room group
-        async_to_sync(self.channel_layer.group_send)(
-            self.room_group_name,
+    async def websocket_receive(self, event):
+        chat_text_raw = event.get('text')
+        handled_text = json.loads(chat_text_raw)
+        print(handled_text)
+        chat_text = handled_text['chat_text']
+        user = handled_text['user']
+        print(handled_text, chat_text, user)
+        message = {
+            'message': chat_text,
+            'user': user
+        }
+        await self.channel_layer.group_send(
+            self.room_name,
             {
-                'type': 'chat_message',
-                'message': message,
+                'type': 'show_text',
+                'text': json.dumps(message)
             }
         )
 
-    # Receive message from room group
-    def chat_message(self, event):
-        message = event['message']
-
-        # Send message to WebSocket
-        self.send(text_data=json.dumps({
-            'message': message
-        }))
+    async def show_text(self, event):
+        print(event, 'fff')
+        self.send({
+            'type': 'websocket.send',
+            'text': event['text']
+        })

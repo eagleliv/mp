@@ -22,6 +22,6 @@ def chatdetails(request):
     return render(request, 'chatbox/chatbox.html')
 
 def room(request, room_name):
-    return render(request, 'chatbox/room.html', {
+    return render(request, 'chatbox/chatbox.html', {
         'room_name_json': mark_safe(json.dumps(room_name))
     })
