@@ -27,7 +27,6 @@
 <script>
   console.log(window.location)
   var websocket_url = 'ws://' + window.location.host + window.location.pathname
-  console.log(websocket_url)
   var socket = new WebSocket(websocket_url)
 
   socket.onmessage = function(event){
@@ -38,7 +37,6 @@
   }
 
   socket.onopen = function(event){
-    console.log('socket connected', event)
     var form = $('#chat-form')
     var user = $('#user').val()
     form.submit(function(e){
