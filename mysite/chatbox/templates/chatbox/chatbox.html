@@ -15,21 +15,44 @@
     <button type="submit">Send</button>
   </div>
 </form> -->
-What chat room would you like to enter?<br/>
-    <input id="room-name-input" type="text" size="100"/><br/>
-    <input id="room-name-submit" type="button" value="Enter"/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<div class="col-sm-12" id="chat-log"></div><br/>
+<form id="chat-form" action="" method="POST">
+  {% csrf_token %}
+    <input id="user" value="{{request.user.username}}" type="hidden"/><br/>
+    <input id="chat-message-input" type="text" size="100"/><br/>
+    <input class="btn btn-primary" id="chat-message-submit" type="submit" value="Send" />
+</form>
+<script>
+  console.log(window.location)
+  var websocket_url = 'ws://' + window.location.host + window.location.pathname
+  var socket = new WebSocket(websocket_url)
 
-    <script>
-        document.querySelector('#room-name-input').focus();
-        document.querySelector('#room-name-input').onkeyup = function(e) {
-            if (e.keyCode === 13) {  // enter, return
-                document.querySelector('#room-name-submit').click();
-            }
-        };
+  socket.onmessage = function(event){
+    console.log(event)
+    var newText = JSON.parse(event.data)
+    console.log('newText')
+    $('#chat-log').append('<small>' + newText.user + '</small><br>' + '<p>' + newText.message + '</p><br>')
+  }
 
-        document.querySelector('#room-name-submit').onclick = function(e) {
-            var roomName = document.querySelector('#room-name-input').value;
-            window.location.pathname = '/chatbox/' + roomName + '/';
-        };
-    </script>
+  socket.onopen = function(event){
+    var form = $('#chat-form')
+    var user = $('#user').val()
+    form.submit(function(e){
+      e.preventDefault()
+      var chat_text = $('#chat-message-input').val()
+      data = {
+        'chat_text': chat_text,
+        'user': user,
+      }
+      socket.send(JSON.stringify(data))
+    })
+  }
+
+  socket.onclose = function(event){
+    console.log('socket closed', event)
+  }
+
+</script>
 {% endblock content %}

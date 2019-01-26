@@ -57,7 +57,7 @@
   animation-name: opacitychange;
   animation-fill-mode: forwards;
   animation-duration: 2s;
-  background-color: #636363;
+  background-color: white; 
 }
 
 .partnerscont {
@@ -84,7 +84,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background-color: orange;
+  background-color: #636363;
   height: 80px;
   width: 100%;
 }
