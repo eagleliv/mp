@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="jumbcor">
+<div class="alert alert-secondary" id="chat-log"></div>
+</div>
+<br/>
+<div class="userinp1">
+<input id="user" value="{{request.user.username}}" type="hidden"/><br/>
+<input id="chat-message-input" class="form-control" type="text" size="100"/><br/>
+<input class="btn btn-primary" id="chat-message-submit" type="submit" value="Send" />
+</div>
+<script>
+
+  var websocket_url = 'ws://' + window.location.host + window.location.pathname
+  var socket = new WebSocket(websocket_url)
+
+  socket.onmessage = function(event){
+    var newText = JSON.parse(event.data)['message']
+    $('#chat-log').append("<i>" + newText['user'] + "</i>" + "</br>" + "<h4>" + newText['message'] + "</h4>" + "<hr />")
+  }
+
+  document.querySelector('#chat-message-submit').onclick = function(e){
+    var chat_text = $('#chat-message-input').val()
+    var user = $('#user').val()
+    e.preventDefault()
+    socket.send(JSON.stringify({
+      'chat_text': chat_text,
+      'user': user
+    }))
+    document.querySelector('#chat-message-input').value = ''
+  }
+
+  socket.onclose = function(event){
+    console.log('socket closed', event)
+  }
+
+</script>
+{% endblock content %}

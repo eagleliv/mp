@@ -1,0 +1,83 @@
+import asyncio
+from channels.consumer import AsyncConsumer
+import json
+
+class ChatConsumer(AsyncConsumer):
+    async def websocket_connect(self, event):
+        await self.send ({
+            'type': 'websocket.accept',
+        })
+        self.room_name = self.scope['url_route']['kwargs']['room_name']
+        await self.channel_layer.group_add(
+            self.room_name,
+            self.channel_name
+        )
+
+    async def websocket_receive(self, event):
+        chat_text_raw = event.get('text')
+        handled_text = json.loads(chat_text_raw)
+        chat_text = handled_text['chat_text']
+        user = handled_text['user']
+        message = {
+            'message': chat_text,
+            'user': user
+        }
+        await self.channel_layer.group_send(
+            self.room_name,
+            {
+                'type': 'show_text',
+                'text': json.dumps(message)
+            }
+        )
+
+    async def show_text(self, event):
+        print(event, 'fff')
+        await self.send({
+            'type': 'websocket.send',
+            'text': event['text']
+        })
+
+
+room
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="col-sm-12" id="chat-log"></div><br/>
+<form id="chat-form" action="" method="POST">
+  {% csrf_token %}
+    <input id="user" value="{{request.user.username}}" type="hidden"/><br/>
+    <input id="chat-message-input" type="text" size="100"/><br/>
+    <input class="btn btn-primary" id="chat-message-submit" type="submit" value="Send" />
+</form>
+<script>
+  var websocket_url = 'ws://' + window.location.host + window.location.pathname
+  var socket = new WebSocket(websocket_url)
+
+  socket.onmessage = function(event){
+    var newText = JSON.parse(event.data)
+    $('#chat-log').append("<small>" + newText.user + "</small>" + "</br>" + "<p>" + newText.message + "</p>" + "<hr />")
+    document.querySelector('#chat-message-input').value = ''
+  }
+
+
+
+  socket.onopen = function(event){
+    var form = $('#chat-form')
+    var user = $('#user').val()
+    form.submit(function(e){
+      e.preventDefault()
+      var chat_text = $('#chat-message-input').val()
+      data = {
+        'chat_text': chat_text,
+        'user': user,
+      }
+      socket.send(JSON.stringify(data))
+    })
+  }
+
+  socket.onclose = function(event){
+    console.log('socket closed', event)
+  }
+</script>
+{% endblock content %}
