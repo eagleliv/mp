@@ -1,11 +1,16 @@
 import asyncio
 from channels.generic.websocket import AsyncWebsocketConsumer
 import json
+from channels.layers import get_channel_layer
 
 class ChatConsumer(AsyncWebsocketConsumer):
+    async def connection_groups(self):
+        print("iii")
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
-
+        self.room_names = []
+        self.room_names.append(self.room_name)
+        print(self.scope['user'])
         # Join romm group
         await self.channel_layer.group_add(
             self.room_name,
@@ -14,6 +19,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.accept()
 
     async def disconnect(self, close_code):
+        self.room_names.remove(self.room_name)
+        print(self.room_names)
         await self.channel_layer.group_discard(
             self.room_name,
             self.channel_name
