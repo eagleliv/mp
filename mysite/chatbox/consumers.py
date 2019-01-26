@@ -16,7 +16,7 @@ class ChatConsumer(AsyncConsumer):
         await self.channel_layer.group_add(
             self.room_name,
             self.channel_name
-        )
+        )cc
 
     async def websocket_receive(self, event):
         chat_text_raw = event.get('text')
