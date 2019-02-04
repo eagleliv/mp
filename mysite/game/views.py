@@ -6,7 +6,8 @@ from . import utils
 
 class Game(View):
     def get(self, request):
-        return render(request, 'game/game.html')
+        a = utils.Hero()
+        return render(request, 'game/game.html', context={'param': a.show_character()})
     def post(self, request):
-        a = utils.Game_Utils()
-        return render(request, 'game/game.html', context={'param': a.game(request)})
+        a = utils.Hero()
+        return render(request, 'game/game.html', context={'param': a.your_move(request)})

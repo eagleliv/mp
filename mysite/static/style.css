@@ -192,6 +192,15 @@
   padding: 10px;
 }
 
+.user2 {
+  display: flex;
+  margin-left: 20px;
+  background-color: #636363;
+  width: 400px;
+  margin-top: 20px;
+  justify-content: space-around;
+  padding: 10px;
+}
 
 .new-post {
   width: calc(100% - 300px);

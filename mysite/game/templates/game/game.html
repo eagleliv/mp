@@ -2,15 +2,35 @@
 
 {% block content %}
 
-<div class="">
   <form class="" action="{% url 'game' %}" method="post">
   {% csrf_token %}
-    <input type="text" name="hhh">
-    <button type="submit" class="btn btn-primary" id="bb">Регистрация</button>
   </form>
 
-  <p>{{ user.username }}</p>
-  <p>{{ param }}</p>
+<div class="user2">
+    <button type="text" class="btn btn-dark" id="minus">-100</button>
+    <input class="alert alert-dark" type="text" name="hhh" id="vv" readonly value="0">
+    <button type="text" class="btn btn-dark" id="plus">+100</button>
 </div>
 
+<div></div>
+
+<div class="">
+  <p>{{ user.username }}</p>
+  {% for key, value in param.items %}
+  <p>{{ key }} , {{ value }}</p>
+  {% endfor %}
+</div>
+
+<script>
+  document.querySelector('#plus').onclick = function(e) {
+    var vv = +document.querySelector('#vv').value;
+    document.querySelector('#vv').value = +vv + 100;
+  };
+
+  document.querySelector('#minus').onclick = function(e) {
+    var vv = document.querySelector('#vv').value;
+    document.querySelector('#vv').value = +vv - 100;
+  };
+
+</script>
 {% endblock content %}
